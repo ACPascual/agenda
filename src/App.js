@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import {useState} from "react";
+
+import './App.css';
+import Contacts from "./components/Contacts.jsx"
+
+const App = () => {
+
+  const [agenda, setAgenda] = useState ([
+    
+      {
+          "name": "Peponcio",
+          "phone": "999999",
+          "mail":"Pepon@cio.com"
+      },
+      {
+          "name": "Lucinda",
+          "phone": "888888",
+          "mail":"Luci@nda.com"
+      },
+      {
+          "name": "Remigia",
+          "phone": "777777",
+          "mail":"Remi@gia.com"
+      }
+      ]
+  )
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+     <Contacts agenda = {agenda} setAgenda = {setAgenda} />
+    
+
     </div>
   );
 }
