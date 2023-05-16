@@ -1,13 +1,16 @@
-const ContactCard = ({contact}) => {
 
-  
+
+const ContactCard = ({contact, index}) => {
 
     return (
         
-    <li>{contact.name}: {contact.phone} : {contact.mail} </li>
-    
-
-)
+        <li id={contact.id}> {contact.name} 
+            <button>Details</button> 
+            <button>Edit</button>
+            <button>Delete</button>
+         </li>
+   
+    )
  
 }
 

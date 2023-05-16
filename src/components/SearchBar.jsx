@@ -1,10 +1,13 @@
-
+import ContactContext from "../contexts/ContactContext";
 import {useState} from "react";
-import ContactList from "./ContactList";
+//import ContactList from "./ContactList";
+
+import {useContext} from "react";
 
 
+const SearchBar = () => {
 
-const SearchBar = ({agenda}) => {
+  const {agenda} = useContext(ContactContext)
 
     const [search, setSearch] = useState("");
     
@@ -22,20 +25,17 @@ return (
             <p>Filtrar por: <input type="text" onChange={handlerSearch} /></p>
 
             <ul>
-              {
-                agenda
-                  .filter(agenda =>
-                    agenda.name.length > 0 &&
-                    agenda.name.startsWith(search)
-                  )
-                  .map((agenda, index) => 
-                  <li> {agenda.name}: {agenda.phone} : {agenda.mail} </li>
-                  )
-              }
-               
-
+                {
+                  agenda
+                    .filter(agenda =>
+                      agenda.name.length > 0 &&
+                      agenda.name.startsWith(search)
+                    )
+                    .map((agenda, index) => 
+                    <li key={agenda.name}> {agenda.name}: {agenda.phone} : {agenda.mail} </li>
+                    )
+                }
             </ul>
-
             
           </div>
         :

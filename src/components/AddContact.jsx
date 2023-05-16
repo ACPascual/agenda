@@ -1,7 +1,10 @@
+import ContactContext from "../contexts/ContactContext";
 import AddContactForm from "./AddContactForm"
-import {useState} from "react";
+import {useState, useContext} from "react";
 
-const AddContact = ({setAgenda}) => {
+const AddContact = () => {
+
+    const {setAgenda} = useContext(ContactContext)
 
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")

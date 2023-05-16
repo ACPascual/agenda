@@ -16,9 +16,7 @@ const AddContactForm = ({ setName, setPhone, setMail}) => {
                 <p> Mail: <input type="text" onChange={handlerMail} /> </p>
             </div>
 
-            <div>
-    </div>
         </div>
     )
 }
-export default AddContactForm
+export default AddContactForm;

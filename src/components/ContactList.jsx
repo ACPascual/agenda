@@ -1,8 +1,12 @@
+import ContactContext from "../contexts/ContactContext";
 import ContactCard from "./ContactCard"
 
-const ContactList = ({agenda}) => {
-    
+import {useContext} from "react";
 
+
+const ContactList = () => {
+    
+    const {agenda} = useContext(ContactContext)
 
     return (
         <div>
@@ -10,25 +14,16 @@ const ContactList = ({agenda}) => {
 
             <ul> {
                 agenda.map((contact, index) => 
-                <ContactCard  contact={contact}  key = {index} />
-                )
-                
+                    <ContactCard  contact={contact}  key = {index} />
+                    )
                 }
             </ul>
-
-        
-      
-        </div>
-        
+  
+        </div>       
       )
     }
  
 
 
 
-
-
-
-
-
-export default ContactList
+export default ContactList;
