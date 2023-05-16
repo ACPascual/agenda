@@ -7,6 +7,7 @@ import Contacts from "./components/Contacts.jsx"
 import Home from "./components/Home"
 import Menu from "./components/Menu"
 import Welcome from "./components/Welcome"
+import ContactDetails from "./components/ContactDetails"
 import NoMatch from "./components/NoMatch"
 import ContactContext from "./contexts/ContactContext"
 
@@ -79,6 +80,18 @@ const App = () => {
              <AddContact />
         </ContactContext.Provider>
       } />
+
+<Route path="contactDetails" element={
+        <ContactContext.Provider value={{
+              agenda,
+              setAgenda,
+            }}>
+             <ContactDetails />
+        </ContactContext.Provider>
+      } />
+
+
+
 
 
       {/* <Route path="character/:id" element={ <CharacterDetail /> } /> */}

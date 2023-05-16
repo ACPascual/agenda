@@ -1,18 +1,14 @@
 
 const ContactDetails = ({contact}) => {
         
-    function Details ()  {
-        prompt ("Hola, {contact.name}")
-    }
+   
 
 
     return (
         <div>
-            <button onClick= {  Details(contact)}> Details</button>
+           poner los detalles de la id que toca
         </div>
         
-       // prompt (" ")
-  
    
     )
  
