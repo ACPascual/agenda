@@ -30,6 +30,7 @@ const App = () => {
         .then(data => {
           const dataFormatted = data.map(person => {
             return {
+              id: person.id,
               name: person.name,
               phone: person.phone,
               mail: person.email
@@ -66,7 +67,7 @@ const App = () => {
       <Route path="contacts" element={
         <ContactContext.Provider value={{
               agenda,
-              setAgenda,
+              setAgenda
             }}>
              <Contacts />
         </ContactContext.Provider>
@@ -75,16 +76,16 @@ const App = () => {
      <Route path="addContact" element={
         <ContactContext.Provider value={{
               agenda,
-              setAgenda,
+              setAgenda
             }}>
              <AddContact />
         </ContactContext.Provider>
       } />
 
-<Route path="contactDetails" element={
+    <Route path="contactDetails/:idContacto" element={
         <ContactContext.Provider value={{
               agenda,
-              setAgenda,
+              setAgenda
             }}>
              <ContactDetails />
         </ContactContext.Provider>

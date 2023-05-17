@@ -6,7 +6,7 @@ const ContactCard = ({contact, index}) => {
     return (
         
         <li id={contact.id}> {contact.name} 
-            <button><Link to="/contactDetails">Detallitos</Link></button>
+            <button><Link to={`/contactDetails/${contact.id}`} >Detallitos</Link></button>
             <button>Edit</button>
             <button>Delete</button>
          </li>
