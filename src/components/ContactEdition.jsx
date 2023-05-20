@@ -13,8 +13,11 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
     const [editName, setEditName] = useState('')
     const [editPhone, setEditPhone] = useState('')
 
+    const updatedAgenda = [...agenda];
+
     const isNameFilled = editName.trim() !== '';
     const isPhoneFilled = editPhone.trim() !== '';
+
 
     const getIndexById = (id) => {
         return agenda.findIndex((contact) => contact.id === id);
@@ -27,9 +30,6 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
      const handleSubmitName = (event) =>{
         event.preventDefault();
                    
-        // Crea una copia de la matriz "agenda" 
-        const updatedAgenda = [...agenda];
-      
         // Actualiza el nombre del contacto seleccionado con el nuevo nombre
         updatedAgenda[selectedIndex].name = editName;
               
@@ -46,9 +46,6 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
 
       const handleSubmitPhone = (event) =>{
         event.preventDefault();
-           
-        // Crea una copia de la matriz "agenda" 
-        const updatedAgenda = [...agenda];
       
         // Actualiza el nombre del contacto seleccionado con el nuevo nombre
         updatedAgenda[selectedIndex].phone = editPhone;
@@ -94,6 +91,7 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
                    <input type = "text" value={editPhone} onChange={handleEditPhone} placeholder={contactPhone}></input>
                    {isPhoneFilled && <button type="submit">Actualizar teléfono</button>}
                    <br/>
+                   
                    <button type="button" onClick={handleCancel}>Cancelar</button>
                </form>
             </p>          
