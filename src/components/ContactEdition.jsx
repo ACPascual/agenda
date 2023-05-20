@@ -6,8 +6,6 @@ import { useEffect, useState} from "react";
 
 const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) => {
 
-    //const [isVisible, setIsVisible] = useState(true);
-
     const thisContact =  idContact? agenda.filter(elemento => elemento.id === idContact ):null;
  
     const [contactName, setContactName] = useState ("") ;
@@ -17,15 +15,17 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
     const [editName, setEditName] = useState('')
     const [editPhone, setEditPhone] = useState('')
 
+    const getIndexById = (id) => {
+        return agenda.findIndex((contact) => contact.id === id);
+      };
+
+    const selectedIndex = getIndexById(idContact);  
     const handleEditName = event => setEditName(event.target.value)
     const handleEditPhone = event => setEditPhone(event.target.value)
 
      const handleSubmitName = (event) =>{
         event.preventDefault();
-      
-        // Encuentra el índice del contacto seleccionado en la matriz "agenda"
-        const selectedIndex = idContact-1;
-      
+                   
         // Crea una copia de la matriz "agenda" 
         const updatedAgenda = [...agenda];
       
@@ -45,10 +45,7 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
 
       const handleSubmitPhone = (event) =>{
         event.preventDefault();
-      
-        // Encuentra el índice del contacto seleccionado en la matriz "agenda"
-        const selectedIndex = idContact-1;
-      
+           
         // Crea una copia de la matriz "agenda" 
         const updatedAgenda = [...agenda];
       
@@ -72,11 +69,10 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
       }
 
      useEffect (() => {
-        
-    
+            
         setContactName( thisContact? thisContact[0].name : "No hay")
         setContactPhone( thisContact? thisContact[0].phone : "No hay")
-        // setContactMail( thisContact? thisContact[0].mail : "No hay")
+       
          }, [thisContact,idContact]);
 
 
