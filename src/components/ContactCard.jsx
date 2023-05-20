@@ -7,8 +7,11 @@ const ContactCard = ({agenda, setAgenda, contact, index}) => {
 
     const [editingContactId, setEditingContactId] = useState(null);
 
+    const [isVisible, setIsVisible] = useState(false);
+
     const handleEditClick = (id) => {
       setEditingContactId(id);
+      setIsVisible(true)
     };
     
  
@@ -24,7 +27,10 @@ const ContactCard = ({agenda, setAgenda, contact, index}) => {
                 </li>
 
                 {editingContactId && (
-                    <ContactEdition agenda={agenda} setAgenda ={setAgenda} idContact={contact.id}  />
+                    <ContactEdition 
+                        agenda={agenda} setAgenda ={setAgenda} 
+                        idContact={contact.id} 
+                        isVisible={isVisible} setIsVisible= {setIsVisible}/>
                 )}
         </div>
         

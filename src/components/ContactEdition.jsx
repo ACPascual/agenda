@@ -4,9 +4,9 @@ import { useEffect, useState} from "react";
 
 //import ContactContext from "../contexts/ContactContext";
 
-const ContactEdition = ({agenda, setAgenda,idContact}) => {
+const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) => {
 
-    const [isVisible, setIsVisible] = useState(true);
+    //const [isVisible, setIsVisible] = useState(true);
 
     const thisContact =  idContact? agenda.filter(elemento => elemento.id === idContact ):null;
  
