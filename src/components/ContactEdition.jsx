@@ -20,7 +20,7 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
     const handleEditName = event => setEditName(event.target.value)
     const handleEditPhone = event => setEditPhone(event.target.value)
 
-     const handleSubmit = (event) =>{
+     const handleSubmitName = (event) =>{
         event.preventDefault();
       
         // Encuentra el índice del contacto seleccionado en la matriz "agenda"
@@ -31,19 +31,42 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
       
         // Actualiza el nombre del contacto seleccionado con el nuevo nombre
         updatedAgenda[selectedIndex].name = editName;
+              
+        // Actualiza el estado con la nueva agenda
+        setAgenda(updatedAgenda);
+        
+        // Restablece los campos
+        setEditName('');
+        
+        // Oculta el componente después de enviar el formulario
+        setIsVisible(false);
+      }
+
+
+      const handleSubmitPhone = (event) =>{
+        event.preventDefault();
+      
+        // Encuentra el índice del contacto seleccionado en la matriz "agenda"
+        const selectedIndex = idContact-1;
+      
+        // Crea una copia de la matriz "agenda" 
+        const updatedAgenda = [...agenda];
+      
+        // Actualiza el nombre del contacto seleccionado con el nuevo nombre
         updatedAgenda[selectedIndex].phone = editPhone;
       
         // Actualiza el estado con la nueva agenda
         setAgenda(updatedAgenda);
         
         // Restablece los campos
-        setEditName('');
         setEditPhone('');
 
         // Oculta el componente después de enviar el formulario
         setIsVisible(false);
       }
 
+
+      
       function handleCancel() {
         setIsVisible(false);
       }
@@ -60,17 +83,19 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
     return isVisible && (
         <div>
              <p>                  
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitName}>
                    
-                    <tag>Nuevo nombre:  </tag>
                     <input type = "text" value={editName} onChange={handleEditName} placeholder={contactName}></input>
-                    <br/> 
-                    <tag> Nuevo teléfono:</tag>
-                    <input type = "text" value={editPhone} onChange={handleEditPhone} placeholder={contactPhone}></input>
-                    <br/> 
-                    <button type="submit">Actualizar</button>
-                    <button type="button" onClick={handleCancel}>Cancelar</button>
+                    <button type="submit">Actualizar nombre</button>
                 </form>
+
+                <form onSubmit={handleSubmitPhone}>
+                   
+                   <input type = "text" value={editPhone} onChange={handleEditPhone} placeholder={contactPhone}></input>
+                   <button type="submit">Actualizar teléfono</button>
+                   <br/>
+                   <button type="button" onClick={handleCancel}>Cancelar</button>
+               </form>
             </p>          
         </div>
    
