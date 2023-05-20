@@ -6,7 +6,7 @@ import {useContext} from "react";
 
 const ContactList = () => {
     
-    const {agenda} = useContext(ContactContext)
+    const {agenda, setAgenda} = useContext(ContactContext)
 
     return (
         <div>
@@ -14,7 +14,7 @@ const ContactList = () => {
 
             <ul> {
                 agenda.map((contact, index) => 
-                    <ContactCard  contact={contact}  key = {index} />
+                    <ContactCard  agenda = {agenda} setAgenda = {setAgenda} contact={contact}  key = {index} />
                     )
                 }
             </ul>

@@ -13,6 +13,7 @@ import ContactContext from "./contexts/ContactContext"
 
 import Header from "./components/Header"
 import AddContact from "./components/AddContact";
+import ContactEdition from "./components/ContactEdition";
 
 const App = () => {
 
@@ -70,6 +71,7 @@ const App = () => {
               setAgenda
             }}>
              <Contacts />
+           
         </ContactContext.Provider>
       } />
      
@@ -90,9 +92,6 @@ const App = () => {
              <ContactDetails />
         </ContactContext.Provider>
       } />
-
-
-
 
 
       {/* <Route path="character/:id" element={ <CharacterDetail /> } /> */}
