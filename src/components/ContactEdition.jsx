@@ -2,7 +2,6 @@
 import { useEffect, useState} from "react";
 
 
-//import ContactContext from "../contexts/ContactContext";
 
 const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) => {
 
@@ -11,9 +10,11 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
     const [contactName, setContactName] = useState ("") ;
     const [contactPhone, setContactPhone] = useState ("") ;
 
-
     const [editName, setEditName] = useState('')
     const [editPhone, setEditPhone] = useState('')
+
+    const isNameFilled = editName.trim() !== '';
+    const isPhoneFilled = editPhone.trim() !== '';
 
     const getIndexById = (id) => {
         return agenda.findIndex((contact) => contact.id === id);
@@ -62,9 +63,10 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
         setIsVisible(false);
       }
 
-
       
       function handleCancel() {
+        setEditName('');
+        setEditPhone('');
         setIsVisible(false);
       }
 
@@ -73,7 +75,9 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
         setContactName( thisContact? thisContact[0].name : "No hay")
         setContactPhone( thisContact? thisContact[0].phone : "No hay")
        
-         }, [thisContact,idContact]);
+     }, [thisContact,idContact]);
+
+
 
 
     return isVisible && (
@@ -82,13 +86,13 @@ const ContactEdition = ({agenda, setAgenda,idContact, isVisible, setIsVisible}) 
                 <form onSubmit={handleSubmitName}>
                    
                     <input type = "text" value={editName} onChange={handleEditName} placeholder={contactName}></input>
-                    <button type="submit">Actualizar nombre</button>
+                    {isNameFilled && <button type="submit">Actualizar nombre</button>}
                 </form>
 
                 <form onSubmit={handleSubmitPhone}>
                    
                    <input type = "text" value={editPhone} onChange={handleEditPhone} placeholder={contactPhone}></input>
-                   <button type="submit">Actualizar teléfono</button>
+                   {isPhoneFilled && <button type="submit">Actualizar teléfono</button>}
                    <br/>
                    <button type="button" onClick={handleCancel}>Cancelar</button>
                </form>
