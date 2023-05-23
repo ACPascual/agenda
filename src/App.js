@@ -2,7 +2,7 @@
 import {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom"
 
-import './App.css';
+import './App.scss';
 import Contacts from "./components/Contacts.jsx"
 import Home from "./components/Home"
 import Menu from "./components/Menu"
@@ -13,14 +13,16 @@ import ContactContext from "./contexts/ContactContext"
 
 import Header from "./components/Header"
 import AddContact from "./components/AddContact";
-import ContactEdition from "./components/ContactEdition";
+
 
 const App = () => {
 
    // Initialize data
-   const titleApp = "AGENDOTA"
+  const titleApp = "AGENDOTA"
 
   const [agenda, setAgenda] = useState ([]);
+ 
+  const [modoDia, setModoDia] = useState (false);
 
     // Side effect
     useEffect(() => {
@@ -44,61 +46,50 @@ const App = () => {
     }, []) // <---------- First render
 
   return (
-    // <div className="App">
-      
-    //  <Contacts agenda = {agenda} setAgenda = {setAgenda} />
-    
+         
+          <div className={`body ${modoDia? 'modo-noche':'modo-dia'}`}>
+             <div id="content">
+                    <Header titleApp={titleApp} />
+                    <hr />
+                    <ContactContext.Provider value={{ modoDia, setModoDia }}>
+                        <Menu  />
+                    </ContactContext.Provider>
+                  <hr />
+                    <Routes>
+                          <Route path="/" element={ <Home /> } />
+                          <Route path="welcome" element={ <Welcome /> } />
+                          <Route path="contacts" element={
+                            <ContactContext.Provider value={{
+                                  agenda,
+                                  setAgenda
+                                }}>
+                                <Contacts />                   
+                            </ContactContext.Provider>
+                          } />
+                        
+                          <Route path="addContact" element={
+                            <ContactContext.Provider value={{
+                                  agenda,
+                                  setAgenda
+                                }}>
+                                <AddContact />
+                            </ContactContext.Provider>
+                          } />
 
-    // </div>
+                          <Route path="contactDetails/:idContacto" element={
+                            <ContactContext.Provider value={{
+                                  agenda,
+                                  setAgenda
+                                }}>
+                                <ContactDetails />
+                            </ContactContext.Provider>
+                          } />
 
-<div>
-    <Header
-      titleApp={titleApp}
-    />
-
-    <hr />
-
-    <Menu />
-
-    <hr />
-
-    <Routes>
-      <Route path="/" element={ <Home /> } />
-      <Route path="welcome" element={ <Welcome /> } />
-      <Route path="contacts" element={
-        <ContactContext.Provider value={{
-              agenda,
-              setAgenda
-            }}>
-             <Contacts />
-           
-        </ContactContext.Provider>
-      } />
-     
-     <Route path="addContact" element={
-        <ContactContext.Provider value={{
-              agenda,
-              setAgenda
-            }}>
-             <AddContact />
-        </ContactContext.Provider>
-      } />
-
-    <Route path="contactDetails/:idContacto" element={
-        <ContactContext.Provider value={{
-              agenda,
-              setAgenda
-            }}>
-             <ContactDetails />
-        </ContactContext.Provider>
-      } />
-
-
-      {/* <Route path="character/:id" element={ <CharacterDetail /> } /> */}
-      <Route path="*" element={ <NoMatch /> } />
-      
-    </Routes>
-</div>
+                          <Route path="*" element={ <NoMatch /> } />
+                      
+                    </Routes>
+              </div>
+          </div>
 
   );
 }
